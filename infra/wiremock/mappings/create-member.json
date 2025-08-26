@@ -1,0 +1,21 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPath": "/members",
+    "bodyPatterns": [
+      { "matchesJsonPath": "$[?(@.name)]" },
+      { "matchesJsonPath": "$[?(@.role)]" }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": { "Content-Type": "application/json" },
+    "jsonBody": {
+      "id": "{{randomValue length=8 type='ALPHANUMERIC'}}",
+      "name": "{{jsonPath request.body '$.name'}}",
+      "role": "{{jsonPath request.body '$.role'}}",
+      "createdAt": "2025-01-01 00:00:00-03:00"
+    },
+    "transformers": ["response-template"]
+  }
+}

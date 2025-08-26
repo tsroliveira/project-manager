@@ -1,0 +1,16 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/members/manager-.*"
+  },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/json" },
+    "jsonBody": {
+      "id": "{{request.pathSegments.[1]}}",
+      "name": "Gerente Exemplo",
+      "role": "gerente"
+    },
+    "transformers": ["response-template"]
+  }
+}

@@ -1,0 +1,61 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: portfolio-db
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-portfolio}
+      POSTGRES_USER: ${POSTGRES_USER:-portfolio}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-portfolio}
+    ports:
+      - "${POSTGRES_PORT:-5433}:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    profiles: ["infra"]
+    networks: [internal]
+
+  wiremock:
+    image: wiremock/wiremock:3.9.1
+    container_name: portfolio-wiremock
+    # Ativa templating para respostas dinâmicas:
+    command: ["--verbose", "--global-response-templating", "--port", "8080"]
+    volumes:
+      - ./infra/wiremock/mappings:/home/wiremock/mappings:ro
+      - ./infra/wiremock/__files:/home/wiremock/__files:ro
+    ports:
+      - "8081:8080"
+    # Sem healthcheck (nem todas as imagens têm curl/wget). Basta service_started:
+    profiles: ["infra"]
+    networks: [internal]
+
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: portfolio-api
+    depends_on:
+      db:
+        condition: service_healthy
+      wiremock:
+        condition: service_started
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/${POSTGRES_DB:-portfolio}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER:-portfolio}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD:-portfolio}
+      MEMBERS_API_BASE_URL: http://wiremock:8080
+    ports:
+      - "8080:8080"
+    profiles: ["api"]
+    networks: [internal]
+
+volumes:
+  db-data:
+
+networks:
+  internal:
+    driver: bridge

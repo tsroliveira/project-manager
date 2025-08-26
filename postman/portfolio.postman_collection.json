@@ -1,0 +1,48 @@
+{
+  "info": { "name": "Portfolio API", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json" },
+  "item": [
+    {
+      "name": "Health",
+      "request": { "method": "GET", "url": { "raw": "{{base}}/actuator/health", "host": ["{{base}}"], "path": ["actuator","health"] } }
+    },
+    {
+      "name": "Create project",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "{{base}}/api/projects", "host": ["{{base}}"], "path": ["api","projects"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\":\"Projeto X\",\n  \"startDate\":\"2025-01-01\",\n  \"expectedEndDate\":\"2025-06-01\",\n  \"totalBudget\":1000,\n  \"managerMemberId\":\"mgr-001\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Change status",
+      "request": {
+        "method": "PATCH",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "{{base}}/api/projects/{{id}}/status", "host": ["{{base}}"], "path": ["api","projects","{{id}}","status"] },
+        "body": { "mode": "raw", "raw": "{ \"status\": \"INICIADO\" }" }
+      }
+    },
+    {
+      "name": "Allocate member",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "{{base}}/api/projects/{{id}}/allocations", "host": ["{{base}}"], "path": ["api","projects","{{id}}","allocations"] },
+        "body": { "mode": "raw", "raw": "{ \"memberId\": \"func-001\" }" }
+      }
+    },
+    {
+      "name": "List allocations",
+      "request": { "method": "GET", "url": { "raw": "{{base}}/api/projects/{{id}}/allocations", "host": ["{{base}}"], "path": ["api","projects","{{id}}","allocations"] } }
+    },
+    {
+      "name": "Deallocate",
+      "request": { "method": "DELETE", "url": { "raw": "{{base}}/api/projects/{{id}}/allocations/func-001", "host": ["{{base}}"], "path": ["api","projects","{{id}}","allocations","func-001"] } }
+    }
+  ],
+  "variable": [{ "key": "base", "value": "http://localhost:8080" }, { "key": "id", "value": "" }]
+}
