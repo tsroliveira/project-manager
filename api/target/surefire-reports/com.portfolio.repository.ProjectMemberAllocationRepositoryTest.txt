@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.portfolio.repository.ProjectMemberAllocationRepositoryTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 37.87 s -- in com.portfolio.repository.ProjectMemberAllocationRepositoryTest

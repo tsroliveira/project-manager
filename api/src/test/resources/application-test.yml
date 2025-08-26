@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: portfolio-test
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  test:
+    database:
+      replace: none
+
+logging:
+  level:
+    org.springframework.test.context.TestContextManager: WARN
+    org.hibernate.SQL: INFO

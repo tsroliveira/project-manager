@@ -1,1 +1,4 @@
+com/portfolio/SanityHealthIT.class
+com/portfolio/web/mapper/ProjectMapperTest.class
+com/portfolio/repository/ProjectMemberAllocationRepositoryTest.class
 com/portfolio/SanityTest.class
