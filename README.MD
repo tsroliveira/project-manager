@@ -131,14 +131,14 @@ docker compose --profile api up -d --build
 curl -s http://localhost:8080/actuator/health
 
 # Criar projeto
-curl -X POST http://localhost:8080/api/projects   -H "Content-Type: application/json"   -d '{
-    "name":"Projeto X",
-    "startDate":"2025-01-01",
-    "expectedEndDate":"2025-06-30",
-    "totalBudget": 100000.00,
-    "description":"Projeto demo",
-    "managerMemberId":"USR-001"
-  }'
+curl -X POST http://localhost:8080/api/projects -H "Content-Type: application/json" -d '{
+  "name":"Projeto X",
+  "startDate":"2025-01-01",
+  "expectedEndDate":"2025-06-30",
+  "totalBudget": 100000.00,
+  "description":"Projeto demo",
+  "managerMemberId":"USR-001"
+}'
 
 # Listar projetos
 curl -s http://localhost:8080/api/projects
@@ -178,7 +178,16 @@ Executar:
 mvn -DskipTests=false test
 ```
 
-> No momento há um teste de sanidade. Ver “Pendências” para a matriz mínima sugerida.
+## Testes com Testcontainers
+
+Os testes usam **PostgreSQL via Testcontainers**. Pré-requisitos:
+- Docker em execução
+- Java 17 e Maven
+
+Para executar:
+```bash
+mvn clean test
+```
 
 ---
 
@@ -192,32 +201,8 @@ mvn -DskipTests=false test
   docker compose --profile api up -d --build
   ```
 
-- **WireMock “inexistente”** ao rodar comandos dentro de `api/`:  
-  Execute os comandos a partir da **raiz** do repo para acessar todos os serviços do Compose.
-
----
-
-## Pendências (para fechar 100% da instrução)
-
-1. **Testes automatizados (mínimo)**
-   - Unitários de domínio/serviço (datas, orçamento, transições de status).
-   - `@DataJpaTest` para repositórios (ex.: `countActiveProjectsForMember`).
-   - Web com `MockMvc` (CRUD projetos e alocações).
-   - Integração usando **WireMock**.
-
-2. **CI/CD (GitHub Actions)**
-   - Workflow com cache do Maven e `mvn -B verify`.
-   - (Opcional) Build/push de imagem Docker para registry.
-
-3. **Publicação no Git**
-   - Criar repositório remoto, configurar `origin` e `git push -u origin main`.
-   - Conferir `.gitignore` (Maven/Java/IDE/Docker).
-
-4. **Campo `risk` no `ProjectDto`**
-   - Implementar regra de cálculo (se prevista) e remover `ignore` no mapper.
-
-5. (**Opcional**) **Timestamps em alocação**
-   - Adicionar `created_at/updated_at` em `ProjectMemberAllocation` e ordenar listagem por criação (exigirá nova migration).
+- **WireMock não acessível** ao rodar comandos dentro de `api/`:  
+  Execute os comandos a partir da **raiz** do repositório para acessar todos os serviços do Compose.
 
 ---
 
