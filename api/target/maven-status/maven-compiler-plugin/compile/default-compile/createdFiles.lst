@@ -3,6 +3,7 @@ com/portfolio/repository/projection/AllocationView.class
 com/portfolio/web/dto/AllocationItemDto.class
 com/portfolio/domain/MemberCache.class
 com/portfolio/repository/spec/ProjectSpecifications.class
+com/portfolio/web/dto/PortfolioReportDto.class
 com/portfolio/service/ProjectService.class
 com/portfolio/web/mapper/ProjectMapper.class
 com/portfolio/web/dto/ProjectDto.class
@@ -13,10 +14,13 @@ com/portfolio/integration/members/MemberClient.class
 com/portfolio/web/dto/ProjectUpdateRequest.class
 com/portfolio/domain/RiskLevel.class
 com/portfolio/domain/ProjectStatus$1.class
+com/portfolio/service/ReportService.class
+com/portfolio/web/ReportController.class
 com/portfolio/domain/Project.class
 com/portfolio/integration/members/MemberClientImpl.class
 com/portfolio/web/dto/ProjectDto$ProjectDtoBuilder.class
 com/portfolio/domain/converter/ProjectStatusConverter.class
+com/portfolio/web/dto/PortfolioReportDto$StatusSummary.class
 com/portfolio/domain/ProjectMemberAllocation.class
 com/portfolio/service/AllocationService.class
 com/portfolio/web/dto/ProjectCreateRequest.class

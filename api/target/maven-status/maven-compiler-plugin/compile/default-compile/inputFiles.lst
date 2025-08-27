@@ -20,12 +20,15 @@
 /mnt/c/Workspace/Professional/CodeGroup/code/api/src/main/java/com/portfolio/repository/spec/ProjectSpecifications.java
 /mnt/c/Workspace/Professional/CodeGroup/code/api/src/main/java/com/portfolio/service/AllocationService.java
 /mnt/c/Workspace/Professional/CodeGroup/code/api/src/main/java/com/portfolio/service/ProjectService.java
+/mnt/c/Workspace/Professional/CodeGroup/code/api/src/main/java/com/portfolio/service/ReportService.java
 /mnt/c/Workspace/Professional/CodeGroup/code/api/src/main/java/com/portfolio/web/AllocationController.java
 /mnt/c/Workspace/Professional/CodeGroup/code/api/src/main/java/com/portfolio/web/ProjectController.java
+/mnt/c/Workspace/Professional/CodeGroup/code/api/src/main/java/com/portfolio/web/ReportController.java
 /mnt/c/Workspace/Professional/CodeGroup/code/api/src/main/java/com/portfolio/web/doc/ApiErrorResponses.java
 /mnt/c/Workspace/Professional/CodeGroup/code/api/src/main/java/com/portfolio/web/dto/AllocationItemDto.java
 /mnt/c/Workspace/Professional/CodeGroup/code/api/src/main/java/com/portfolio/web/dto/AllocationRequest.java
 /mnt/c/Workspace/Professional/CodeGroup/code/api/src/main/java/com/portfolio/web/dto/PageResponse.java
+/mnt/c/Workspace/Professional/CodeGroup/code/api/src/main/java/com/portfolio/web/dto/PortfolioReportDto.java
 /mnt/c/Workspace/Professional/CodeGroup/code/api/src/main/java/com/portfolio/web/dto/ProjectCreateRequest.java
 /mnt/c/Workspace/Professional/CodeGroup/code/api/src/main/java/com/portfolio/web/dto/ProjectDto.java
 /mnt/c/Workspace/Professional/CodeGroup/code/api/src/main/java/com/portfolio/web/dto/ProjectUpdateRequest.java

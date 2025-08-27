@@ -39,4 +39,10 @@ public interface ProjectMemberAllocationRepository extends JpaRepository<Project
       order by a.id asc
     """)
     List<AllocationView> findAllocationsWithCache(@Param("projectId") UUID projectId);
+
+    @Query("""
+      select count(distinct a.memberExternalId)
+      from ProjectMemberAllocation a
+    """)
+    long countDistinctMembers();
 }
